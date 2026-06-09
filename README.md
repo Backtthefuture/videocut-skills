@@ -33,11 +33,14 @@ cd ~/.codex/skills/videocut-skills
 cp .env.example .env
 ```
 
-Then edit `.env` and fill in:
+Then edit `.env` and fill in your Volcengine/Doubao Speech API key:
 
 ```bash
 VOLCENGINE_API_KEY=your_key_here
 ```
+
+If you have never used Volcengine/Doubao APIs before, follow the beginner guide:
+[How to get the API key](docs/API_KEY_SETUP.md).
 
 ## Usage
 
@@ -77,7 +80,7 @@ The main delivery files are:
 - Node.js 18+
 - FFmpeg / ffprobe
 - Python 3
-- Volcengine ASR API key
+- Volcengine/Doubao Speech ASR API key
 - Network access for temporary audio upload
 
 ## Acknowledgements

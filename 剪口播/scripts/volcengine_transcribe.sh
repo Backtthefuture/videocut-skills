@@ -20,10 +20,17 @@ ENV_FILE="$(dirname "$(dirname "$SCRIPT_DIR")")/.env"
 if [ ! -f "$ENV_FILE" ]; then
   echo "❌ 找不到 $ENV_FILE"
   echo "请创建: cp .env.example .env 并填入 VOLCENGINE_API_KEY"
+  echo "新手获取 Key: docs/API_KEY_SETUP.md"
   exit 1
 fi
 
 API_KEY=$(grep VOLCENGINE_API_KEY "$ENV_FILE" | cut -d'=' -f2)
+
+if [ -z "$API_KEY" ]; then
+  echo "❌ $ENV_FILE 里没有配置 VOLCENGINE_API_KEY"
+  echo "请先按 docs/API_KEY_SETUP.md 获取火山引擎/豆包语音 API Key"
+  exit 1
+fi
 
 echo "🎤 提交火山引擎转录任务..."
 echo "音频 URL: $AUDIO_URL"
