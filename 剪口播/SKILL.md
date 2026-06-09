@@ -24,6 +24,25 @@ pos: 转录+识别+审核+剪辑+剪后重转录+AI字幕校对
 用户: 处理一下这个视频
 ```
 
+## 首次安装后的引导
+
+在处理任何视频前，先检查当前 skill 是否已经完成首次配置：
+
+```bash
+bash "$SKILL_DIR/scripts/check_setup.sh"
+```
+
+如果用户是小白、没有配置 `.env`，或者 `VOLCENGINE_API_KEY` 为空，不要继续抽音频/上传/转录。先用简单中文引导用户：
+
+1. 打开火山引擎控制台：https://console.volcengine.com/
+2. 搜索 `语音识别` / `智能语音` / `豆包语音` / `Speech`
+3. 开通语音识别服务，创建或复制 API Key
+4. 在仓库根目录创建 `.env`：`cp .env.example .env`
+5. 把 Key 填到 `.env`：`VOLCENGINE_API_KEY=你的_key`
+6. 详细教程见：`docs/API_KEY_SETUP.md`
+
+注意：这里要的是**语音识别/ASR Key**，不是随便一个火山方舟大模型 Key。只有检查通过后，才开始处理视频。
+
 默认走**全自动模式**：不打开审核网页，直接输出剪后 MP4、基于剪后 MP4 音频重新识别的 `*_raw_final.srt`，以及经过 AI 字幕文字校对后的 `*_final.srt`。
 
 **重要：`*_final.srt` 必须是 AI 校对后的交付字幕；未经过 AI 校对的 ASR 原稿只能命名为 `*_raw_final.srt`，不能作为最终交付。**
@@ -68,6 +87,8 @@ output/
 ## 流程
 
 ```
+-1. 首次配置检查：bash "$SKILL_DIR/scripts/check_setup.sh"
+    ↓
 0. 创建输出目录
     ↓
 1. 提取音频 (ffmpeg)

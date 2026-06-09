@@ -42,6 +42,15 @@ VOLCENGINE_API_KEY=your_key_here
 If you have never used Volcengine/Doubao APIs before, follow the beginner guide:
 [How to get the API key](docs/API_KEY_SETUP.md).
 
+After installation, run the first-use check:
+
+```bash
+bash ~/.codex/skills/videocut-skills/剪口播/scripts/check_setup.sh
+```
+
+If the API key is missing, this command will show the next steps in Chinese and
+point you to the Volcengine console.
+
 ## Usage
 
 In Codex/Claude, run the skill with a video file:
